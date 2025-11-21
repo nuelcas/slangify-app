@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Slangify — Text to Slang</title>
+    <meta
+      name="description"
+      content="Slangify — Convert normal text into modern slang"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-slate-50 min-h-screen flex items-center justify-center p-6">
+    <div class="w-full max-w-2xl bg-white rounded-2xl shadow-lg p-6">
+      <h1 class="text-2xl font-semibold mb-2">Slangify</h1>
+      <p class="text-sm text-gray-500 mb-4">
+        Convert normal text into modern slang — try multi-word phrases like
+        "going to", "want to", "do not".
+      </p>
+
+      <textarea
+        id="input"
+        rows="6"
+        placeholder="Type or paste text here..."
+        class="w-full p-3 border rounded-lg mb-3"
+      ></textarea>
+
+      <div class="flex gap-2 mb-4">
+        <button
+          id="go"
+          class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow"
+        >
+          Slangify
+        </button>
+        <button id="clear" class="px-4 py-2 border rounded-lg">Clear</button>
+        <button id="copy" class="px-4 py-2 border rounded-lg ml-auto">
+          Copy
+        </button>
+      </div>
+
+      <h2 class="text-lg font-medium mb-2">Result</h2>
+      <pre
+        id="result"
+        class="bg-gray-100 p-4 rounded-lg min-h-[80px] whitespace-pre-wrap"
+      ></pre>
+
+      <div class="text-xs text-gray-400 mt-4">
+        Backend: <span id="backendStatus">unknown</span>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
