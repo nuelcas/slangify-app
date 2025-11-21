@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "esbuild src/main.ts --bundle --outfile=dist/main.js --minify --sourcemap && cp index.html dist/index.html",
+    "build": "esbuild src/main.ts --bundle --minify --sourcemap --outfile=dist/main.js && cp src/index.html dist/index.html",
     "dev": "esbuild src/main.ts --bundle --outfile=dist/main.js --servedir=dist --watch",
     "preview": "node -e \"require('http').createServer((req,res)=>{const fs=require('fs'); const p='dist'+(req.url=='/'?'/index.html':req.url); fs.readFile(p,(e,d)=>{if(e){res.statusCode=404;res.end('Not found')}else{res.end(d)}})}).listen(5000); console.log('preview at http://localhost:5000')\""
   },
