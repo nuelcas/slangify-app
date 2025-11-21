@@ -23,7 +23,7 @@ app.get("/health", (_req: Request, res: Response) => {
 
 // In production serve the frontend static files (built into ../frontend/dist)
 if (process.env.NODE_ENV === "production") {
-  const distPath = path.join(__dirname, "..", "..", "frontend", "dist");
+  const distPath = path.join(__dirname, "..", "public");
   app.use(express.static(distPath));
   app.get("*", (_req, res) => {
     res.sendFile(path.join(distPath, "index.html"));
