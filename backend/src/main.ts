@@ -31,8 +31,10 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Seenode -> must listen on process.env.PORT or a default
-const port = Number(process.env.PORT || 8080);
+const port = Number(process.env.PORT || 80);
+const host = "0.0.0.0"; // Required for Seenode
 
-app.listen(port, () => {
-  console.log(`Slangify backend listening on port ${port} (NODE_ENV=${process.env.NODE_ENV || "development"})`);
+app.listen(port, host, () => {
+  console.log(`Slangify backend listening on ${host}:${port} (NODE_ENV=${process.env.NODE_ENV || "development"})`);
 });
+
