@@ -1,0 +1,49 @@
+name: Deploy Slangify to Seenode
+
+on:
+  push:
+    branches:
+      - main # trigger on push to main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Checkout repository
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      # 2. Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20" # use latest LTS version
+
+      # 3. Install backend dependencies
+      - name: Install backend dependencies
+        working-directory: ./backend
+        run: npm install
+
+      # 4. Install frontend dependencies
+      - name: Install frontend dependencies
+        working-directory: ./frontend
+        run: npm install
+
+      # 5. Build frontend
+      - name: Build frontend
+        working-directory: ./frontend
+        run: npm run build
+
+      # 6. Build backend
+      - name: Build backend
+        working-directory: ./backend
+        run: npm run build
+
+      # 7. Trigger Seenode Deployment
+      - name: Trigger Seenode Deployment
+        run: |
+          curl -X POST \
+            -H "Authorization: Bearer ${{ secrets.SEENODE_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{"gitCommitSha": "${{ github.sha }}"}' \
+            "https://api.seenode.com/v1/applications/${{ secrets.SEENODE_APPLICATION_ID }}/deployments"
